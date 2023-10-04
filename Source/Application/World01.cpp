@@ -69,7 +69,7 @@ namespace nc
         glTranslatef(m_position.x, m_position.y, 0);
         if(m_rotate) glRotatef(m_angle, 1, 0, 0);
 
-        glScalef((sin(m_time * 5) + 1) * 0.5f, 0.5f, 0.5f);
+        glScalef((sin(m_time * 5) + 1) * 0.5f, 0.5f, 0);
 
         glBegin(GL_TRIANGLE_STRIP);
 
