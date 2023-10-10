@@ -57,7 +57,7 @@ namespace nc
 
 	void Model::Draw(Renderer& renderer, const Transform& transform)
 	{
-		if (m_points.empty()) return;
+		/*if (m_points.empty()) return;
 
 		mat3 mx = transform.GetMatrix();
 
@@ -68,7 +68,7 @@ namespace nc
 			vec2 p2 = mx * m_points[i + 1];
 
 			renderer.DrawLine(p1.x, p1.y, p2.x, p2.y);
-		}
+		}*/
 	}
 
 	float Model::GetRadius()

@@ -1,6 +1,5 @@
 #pragma once
 #include "Framework/World.h"
-#include "Core/Math/Vector2.h"
 #include "Renderer/Renderer.h"
 #include <vector>
 
@@ -21,6 +20,8 @@ namespace nc
 		bool m_rotate = false;
 		glm::vec3 m_position;
 		std::vector<glm::vec3> m_positions;
+
+		Transform m_transform;
 
 		GLuint m_vao;
 		res_t<Program> m_program;
