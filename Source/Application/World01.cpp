@@ -7,7 +7,7 @@ namespace nc
 {
     bool World01::Initialize()
     {
-        for (int i = 0; i < 12; i++) m_positions.push_back({ randomf(-0.2, 0.2), randomf(-0.1, 0.2) });
+        for (int i = 0; i < 12; i++) m_positions.push_back({ randomf((float)-0.2, (float)0.2), randomf((float)-0.1, (float)0.2) });
 
         return true;
     }
@@ -83,10 +83,10 @@ namespace nc
         glVertex2f(0.5f, -0.5f);
 
         glColor3f(1, 0, 0);
-        glVertex2f(0.4, 0.4);
+        glVertex2f((float)0.4, (float)0.4);
 
         glColor3f(1, 0, 0);
-        glVertex2f(0.4, 0.1);
+        glVertex2f((float)0.4, (float)0.1);
 
         glEnd();
 
