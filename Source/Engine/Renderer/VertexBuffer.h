@@ -1,6 +1,6 @@
 #pragma once
-#include "Renderer.h"
 #include "Framework/Resource/Resource.h"
+#include <glad/include/glad/glad.h>
 #include <vector>
 
 namespace nc
@@ -12,7 +12,7 @@ namespace nc
 		virtual ~VertexBuffer();
 
 		bool Create(std::string name, ...) override;
-		void Draw(GLenum primitiveType = GL_TRIANGLES);
+		void Draw(GLenum primitiveType);
 		void Bind() { glBindVertexArray(m_vao); }
 
 		void CreateVertexBuffer(GLsizei size, GLsizei vertexCount, GLvoid* data);

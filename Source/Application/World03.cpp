@@ -23,6 +23,7 @@ namespace nc
 
         //Vertex Buffer;
 
+        //m_vertexBuffer = std::make_unique<VertexBuffer>();
         m_vertexBuffer = GET_RESOURCE(VertexBuffer, "vb");
         m_vertexBuffer->CreateVertexBuffer(sizeof(vertexData), 4, vertexData);
         m_vertexBuffer->SetAttribute(0, 3, 8 * sizeof(GLfloat), 0);                  // position
