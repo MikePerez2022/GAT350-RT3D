@@ -22,13 +22,14 @@ uniform struct Material
 uniform struct Light
 {
 	vec3 position;
-	vec3 lColor;
-	vec3 aColor;
+	vec3 color;
 } light;
 
+uniform vec3 ambientLight;
+
+
 vec3 lightPosition = light.position;
-vec3 diffuseLight = max(light.lColor, 0);
-vec3 ambientLight = max(light.aColor, 0);
+vec3 diffuseLight = max(light.color, 0);
 
 
 void main()
@@ -42,7 +43,7 @@ void main()
 	vec3 lightDirection = normalize(lightPosition - position.xyz);
 	float instensity = max(dot(lightDirection, normal), 0);
 
-	vec3 lightColor = (diffuseLight * instensity) + ambientLight;
+	vec3 lightColor = (diffuseLight * instensity) + max(ambientLight, 0);
 	ocolor = material.color * vec4(lightColor, 1);
 
 	mat4 mvp = projection * view * model;

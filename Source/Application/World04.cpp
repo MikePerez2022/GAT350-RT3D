@@ -33,8 +33,8 @@ namespace nc
 
         ImGui::Begin("Light");
         ImGui::DragFloat3("Light Position", &position[0], 0.1f);
-        ImGui::ColorEdit3("Diffuse Color", &lColor[0], 0.1f);
-        ImGui::ColorEdit3("Ambient Color", &aColor[0], 0.1f);
+        ImGui::ColorEdit3("Diffuse Color", &color[0], 0.1f);
+        ImGui::ColorEdit3("Ambient Color", &ambientLight[0], 0.1f);
         ImGui::End();
 
         //m_angle += 180 * dt;
@@ -73,10 +73,10 @@ namespace nc
         material->GetProgram()->SetUniform("light.position", position);
 
         //Diffuse light color
-        material->GetProgram()->SetUniform("light.lColor", lColor);
+        material->GetProgram()->SetUniform("light.color", color);
 
         //Ambient light color
-        material->GetProgram()->SetUniform("light.aColor", aColor);
+        material->GetProgram()->SetUniform("ambientLight", ambientLight);
 
 
         

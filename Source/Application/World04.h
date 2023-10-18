@@ -20,8 +20,8 @@ namespace nc
 		float m_speed = 5;
 
 		glm::vec3 position{ 0, 8, 0 };
-		glm::vec3 lColor{ 1, 1, 1 };
-		glm::vec3 aColor{ 0.2f, 0.2f, 0.2f };
+		glm::vec3 color{ 1, 1, 1 };
+		glm::vec3 ambientLight{ 0.2f, 0.2f, 0.2f };
 
 		Transform m_transform;
 		res_t<Model> m_model;
