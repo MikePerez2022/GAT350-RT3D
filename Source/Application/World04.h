@@ -21,7 +21,7 @@ namespace nc
 
 		glm::vec3 position{ 0, 8, 0 };
 		glm::vec3 color{ 1, 1, 1 };
-		glm::vec3 ambientLight{ 0.2f, 0.2f, 0.2f };
+		glm::vec3 ambientLight{ 0.05f, 0.05f, 0.05f };
 
 		Transform m_transform;
 		res_t<Model> m_model;
