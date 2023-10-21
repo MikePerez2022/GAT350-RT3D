@@ -34,8 +34,8 @@ namespace nc
 
         ImGui::Begin("Light");
         ImGui::DragFloat3("Light Position", &position[0], 0.1f);
-        ImGui::ColorEdit3("Diffuse Color", &color[0], 0.1f);
-        ImGui::ColorEdit3("Ambient Color", &ambientLight[0], 0.1f);
+        ImGui::ColorEdit3("Diffuse Color", &color[0], (ImGuiColorEditFlags)0.1f);
+        ImGui::ColorEdit3("Ambient Color", &ambientLight[0], (ImGuiColorEditFlags)0.1f);
         ImGui::End();
 
         //m_angle += 180 * dt;
