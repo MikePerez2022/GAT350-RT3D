@@ -27,14 +27,11 @@ void main()
 {
 	mat4 modelView = view * model;
 
-	//Convert position and normal to world-view space then pass on to frag shader
+	//Convert position and normal to world-view space
 	oposition = vec3(modelView * vec4(vposition, 1));
-	onormal = normalize(mat3(modelView) * vnormal);
-
-	//adjust texture cordinates to the offset and tiling
+	onormal = normalize(mat3(modelView) * vnormal);	
 	otexcoord = (vtexcoord * material.tiling) + material.offset;
 
-	//place model into world-view space
 	mat4 mvp = projection * view * model;
 	gl_Position = mvp * vec4(vposition, 1.0);
 }
