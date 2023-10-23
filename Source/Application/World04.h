@@ -4,8 +4,29 @@
 #include "Core/Math/Transform.h"
 #include <vector>
 
+//These don't work. check them later. for now substitution hardcoding is your best friend
+#define POINT			 0;
+#define DIRECTIONAL		 1;
+#define SPOT			 2;
+
 namespace nc
 {
+	struct Light_t
+	{
+		enum etype
+		{
+			Point,
+			Directional,
+			Spot
+		};
+
+		etype type;
+		glm::vec3 position;
+		glm::vec3 direction;
+		glm::vec3 color;
+		float cuttoff;
+	};
+
 	class World04 : public World
 	{
 	public:
@@ -19,8 +40,7 @@ namespace nc
 		float m_time;
 		float m_speed = 5;
 
-		glm::vec3 position{ 0, 8, 0 };
-		glm::vec3 color{ 1, 1, 1 };
+		Light_t m_light;
 		glm::vec3 ambientLight{ 0.05f, 0.05f, 0.05f };
 
 		Transform m_transform;

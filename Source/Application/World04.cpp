@@ -12,8 +12,16 @@ namespace nc
         auto material = GET_RESOURCE(Material, "Materials/grid.mtrl");
         m_model = std::make_shared<Model>();
         m_model->SetMaterial(material);
+        m_model->Load("Models/plane.obj");
+        m_transform.position.y = -1;
         //m_model->Load("Models/buddha.obj", glm::vec3{ 0 }, glm::vec3{ -90, 0, 0 });
-        m_model->Load("Models/teapot.obj");
+        //m_model->Load("Models/dragon.obj", glm::vec3{ 0 }, glm::vec3{ 0, 0, 0 }, glm::vec3{0.1f, 0.1f, 0.1f});
+
+        m_light.type = Light_t::etype::Point;
+        m_light.position = glm::vec3{ 0, 5, 0 };
+        m_light.direction = glm::vec3{ 0, -1, 0 };
+        m_light.color = glm::vec3{ 1, 1, 1 };
+        m_light.cuttoff = 30.0f;
 
         return true;
     }
@@ -32,14 +40,18 @@ namespace nc
         ImGui::DragFloat3("Scale", &m_transform.scale[0], 0.1f);
         ImGui::End();
 
-        ImGui::Begin("Light");
-        ImGui::DragFloat3("Light Position", &position[0], 0.1f);
-        ImGui::ColorEdit3("Diffuse Color", &color[0], (ImGuiColorEditFlags)0.1f);
-        ImGui::ColorEdit3("Ambient Color", &ambientLight[0], (ImGuiColorEditFlags)0.1f);
-        ImGui::End();
 
-        //m_angle += 180 * dt;
-        //m_transform.rotation.z += 100 * dt;
+        ImGui::Begin("Light");
+        const char* types[] = { "Point", "Directional", "Spot" };
+        ImGui::Combo("Type", (int*)(&m_light.type), types, 3);
+
+        if (m_light.type == Light_t::etype::Directional) ImGui::DragFloat3("Direction", glm::value_ptr(m_light.direction), 0.1f);
+        else ImGui::DragFloat3("Position", glm::value_ptr(m_light.position), 0.1f);
+
+        if (m_light.type == Light_t::etype::Spot) ImGui::DragFloat("cutoff", &m_light.cuttoff, 1, 0, 90);
+        ImGui::ColorEdit3("Color", glm::value_ptr(m_light.color), (ImGuiColorEditFlags)0.1f);
+        ImGui::ColorEdit3("Ambient color", glm::value_ptr(ambientLight), (ImGuiColorEditFlags)0.1f);
+        ImGui::End();
 
 
         m_transform.position.x += ENGINE.GetSystem<InputSystem>()->GetKeyDown(SDL_SCANCODE_A) ? m_speed * -dt : 0;
@@ -52,6 +64,7 @@ namespace nc
         m_transform.position.z += ENGINE.GetSystem<InputSystem>()->GetKeyDown(SDL_SCANCODE_I) ? m_speed * dt : 0;
 
         m_time += dt;
+
 
         auto material = m_model->GetMaterial();
         material->ProcessGui();
@@ -70,14 +83,14 @@ namespace nc
 
 
 
-        //light position
-        material->GetProgram()->SetUniform("light.position", position);
-
-        //Diffuse light color
-        material->GetProgram()->SetUniform("light.color", color);
-
-        //Ambient light color
+        //light
+        material->GetProgram()->SetUniform("light.position", m_light.position);
+        material->GetProgram()->SetUniform("light.color", m_light.color);
         material->GetProgram()->SetUniform("ambientLight", ambientLight);
+
+        material->GetProgram()->SetUniform("light.type", m_light.type);
+        material->GetProgram()->SetUniform("light.direction", m_light.direction);
+        material->GetProgram()->SetUniform("light.cutoff", glm::radians(m_light.cuttoff));
 
 
         

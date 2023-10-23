@@ -24,8 +24,11 @@ uniform struct Material
 //Light
 uniform struct Light
 {
+	int type;
 	vec3 position;
+	vec3 direction;
 	vec3 color;
+	float cutoff;
 } light;
 
 uniform vec3 ambientLight;
@@ -36,10 +39,18 @@ vec3 ads( vec3 position, vec3 normal)
 	vec3 ambient = ambientLight;
 
 
-	//DIFFUSE
-	vec3 lightDir = normalize(light.position - position);
+	//DIFFUSE					  //DIRECTIONAL == 1
+	vec3 lightDir = (light.type == 1) ? normalize(-light.direction) : normalize(light.position - position);
+
+	float spotIntensity = 1.0;
+	if(light.type == 2) //SPOT == 2
+	{
+		float angle = acos(dot(light.direction, -lightDir));
+		if (angle > light.cutoff) spotIntensity = 0;
+	}
+
 	float intensity = max(dot(lightDir, normal), 0);
-	vec3 diffuse = material.diffuse * (light.color * intensity);
+	vec3 diffuse = material.diffuse * (light.color * intensity * spotIntensity);
 
 
 	//SPECULAR
