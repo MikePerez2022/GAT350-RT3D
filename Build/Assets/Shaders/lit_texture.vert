@@ -7,11 +7,20 @@ in layout(location = 2) vec3 vnormal;
 out layout(location = 0) vec3 oposition;
 out layout(location = 1) vec2 otexcoord;
 out layout(location = 2) vec3 onormal;
-out layout(location = 3) vec4 ocolor;
 
 uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
+
+uniform struct Material
+{
+	vec3 diffuse;
+	vec3 specular;
+	float shininess;
+
+	vec2 offset;
+	vec2 tiling;
+} material;
 
 
 void main()
@@ -23,10 +32,7 @@ void main()
 	onormal = normalize(mat3(modelView) * vnormal);
 
 	//adjust texture cordinates to the offset and tiling
-	otexcoord = vtexcoord;
-	
-	//pass the matrial color down the pipeline
-	ocolor = vec4(1,1,1,1);
+	otexcoord = (vtexcoord * material.tiling) + material.offset;
 
 	//place model into world-view space
 	mat4 mvp = projection * view * model;
