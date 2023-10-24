@@ -49,8 +49,8 @@ vec3 ads( vec3 position, vec3 normal)
 		if (angle > light.cutoff) spotIntensity = 0;
 	}
 
-	float intensity = max(dot(lightDir, normal), 0);
-	vec3 diffuse = material.diffuse * (light.color * intensity * spotIntensity);
+	float intensity = max(dot(lightDir, normal), 0) * spotIntensity;
+	vec3 diffuse = material.diffuse * (light.color * intensity);
 
 
 	//SPECULAR
