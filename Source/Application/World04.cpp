@@ -10,24 +10,34 @@ namespace nc
 {
     bool World04::Initialize()
     {
-        auto material = GET_RESOURCE(Material, "Materials/multi.mtrl");
-        m_model = std::make_shared<Model>();
-        m_model->SetMaterial(material);
+        //auto material = GET_RESOURCE(Material, "Materials/multi.mtrl");
+        //m_model = std::make_shared<Model>();
+        //m_model->SetMaterial(material);
         //m_model->Load("Models/plane.obj");
         //m_transform.position.y = -1;
         //m_model->Load("Models/buddha.obj", glm::vec3{ 0 }, glm::vec3{ -90, 0, 0 });
-        m_model->Load("Models/dragon.obj", glm::vec3{ 0 }, glm::vec3{ 0, 0, 0 }, glm::vec3{0.1f, 0.1f, 0.1f});
+        //m_model->Load("Models/dragon.obj", glm::vec3{ 0 }, glm::vec3{ 0, 0, 0 }, glm::vec3{0.1f, 0.1f, 0.1f});
+
+        auto material = GET_RESOURCE(Material, "materials/squirrel.mtrl");
+        m_model = std::make_shared<Model>();
+        m_model->SetMaterial(material);
+        m_model->Load("models/squirrel.glb", glm::vec3{ 0, -0.7f, 0 }, glm::vec3{ 0 }, glm::vec3{ 0.4f });
 
         for (int i = 0; i < 3; i++)
         {
-            m_lights[i].type = Light_t::etype::Point;
-            m_lights[i].position = glm::vec3{ randomf(-5, 5), randomf(1, 8), randomf(-5, 5)};
-            m_lights[i].direction = glm::vec3{ 0, -1, 0 };
-            m_lights[i].color = glm::rgbColor(glm::vec3{ randomf() * 360 , 1, 1 });
-            m_lights[i].intensity = 1;
-            m_lights[i].range = 12;
-            m_lights[i].innerAngle = 10.0f;
-            m_lights[i].outerAngle = 30.0f;
+
+            Light_t light;
+            light.type = Light_t::etype::Point;
+            light.position = glm::vec3{ randomf(-5, 5), randomf(1, 8), randomf(-5, 5)};
+            light.direction = glm::vec3{ 0, -1, 0 };
+            light.color = glm::rgbColor(glm::vec3{ randomf() * 360 , 1, 1 });
+            light.intensity = 1;
+            light.range = 12;
+            light.innerAngle = 10.0f;
+            light.outerAngle = 30.0f;
+
+
+            m_lights.push_back(light);
         }
         
 
@@ -42,14 +52,37 @@ namespace nc
     {
         ENGINE.GetSystem<Gui>()->BeginFrame();
 
-        ImGui::Begin("Transform");
-        ImGui::DragFloat3("Position", &m_transform.position[0], 0.1f);
-        ImGui::DragFloat3("Rotation", &m_transform.rotation[0], 0.1f);
-        ImGui::DragFloat3("Scale", &m_transform.scale[0], 0.1f);
+        m_transform.ProcessGui();
+
+        ImGui::Begin("Scene");
+        ImGui::ColorEdit3("Ambient Color", glm::value_ptr(ambientLight));
+        ImGui::Separator();
+
+        if (ImGui::Button("Add Light"))
+        {
+            //m_lights.push_back(Light_t{ Light_t::etype::Point, glm::vec3{0, 0, 0}, glm::vec3{0, -1, 0}, glm::vec3{1, 1, 1}, 1.0f, 10.0f, 10.0f, 30.0f});
+        }
+
+        if (ImGui::Button("Remove Light") && !m_lights.empty())
+        {
+            //m_lights.pop_back();
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            std::string name = "light" + std::to_string(i);
+            if (ImGui::Selectable(name.c_str(), m_selected == i)) m_selected = i;
+        }
+
+
         ImGui::End();
 
 
         ImGui::Begin("Light");
+
+        const char* lights[] = { "Light1", "Light2", "Light3"};
+        ImGui::Combo("Lights", (int*)(&m_selected), lights, 3);
+
         const char* types[] = { "Point", "Directional", "Spot" };
         ImGui::Combo("Type", (int*)(&m_lights[m_selected].type), types, 3);
 
@@ -67,7 +100,7 @@ namespace nc
 
         if(m_lights[m_selected].type != Light_t::etype::Directional) ImGui::DragFloat("Range", &m_lights[m_selected].range, 0.1f, 0.1f, 50);
 
-        ImGui::ColorEdit3("Ambient color", glm::value_ptr(ambientLight), (ImGuiColorEditFlags)0.1f);
+        //ImGui::ColorEdit3("Ambient color", glm::value_ptr(ambientLight), (ImGuiColorEditFlags)0.1f);
         ImGui::End();
 
 
