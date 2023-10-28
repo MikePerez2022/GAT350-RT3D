@@ -1,5 +1,6 @@
 #include "Scene.h"
 #include "Framework/Components/LightComponent.h"
+#include "Framework/Components/CameraComponent.h"
 
 
 namespace nc
@@ -35,6 +36,21 @@ namespace nc
 			{
 				lights.push_back(component);
 			}
+
+			
+		}
+
+		CameraComponent* camera = nullptr;
+		for (auto& actor : m_actors)
+		{
+			if (!actor->active) continue;
+
+			auto component = actor->GetComponent<CameraComponent>();
+			if (component)
+			{
+				camera = component;
+				break;
+			}
 		}
 
 		// get all shader programs in the resource system
@@ -47,7 +63,7 @@ namespace nc
 
 
 			// set camera in shader program
-			//if (camera) camera->SetProgram(program);
+			if (camera) camera->SetProgram(program);
 
 
 

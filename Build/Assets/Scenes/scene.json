@@ -5,7 +5,24 @@
 			"name": "actor1",
 			"persistent": true,
 			"transform": {
-				"position": [ 0, -0.2, 2.2 ],
+				"position": [ -0.2, -0.2, 2.2 ],
+				"scale": [ 0.1, 0.1, 0.1 ],
+				"rotation": [ 0, 0, 0 ]
+			},
+			"components": [
+				{
+					"type": "ModelComponent",
+					"modelName": "models/squirrel.glb",
+					"materialName": "materials/squirrel.mtrl"
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "actor2",
+			"persistent": true,
+			"transform": {
+				"position": [ 0.2, -0.2, 2.2 ],
 				"scale": [ 0.1, 0.1, 0.1 ],
 				"rotation": [ 0, 0, 0 ]
 			},
