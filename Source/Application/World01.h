@@ -15,7 +15,7 @@ namespace nc
 
 	private:
 		float m_angle = 0;
-		float m_time;
+		float m_time = 0;
 		bool m_rotate = false;
 		vec2 m_position;
 		std::vector<vec2> m_positions;

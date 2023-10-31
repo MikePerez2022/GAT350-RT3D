@@ -16,7 +16,7 @@ namespace nc
 
 	private:
 		float m_angle = 0;
-		float m_time;
+		float m_time = 0;
 		float m_speed = 5;
 
 		Transform m_transform;

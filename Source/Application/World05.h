@@ -16,7 +16,7 @@ namespace nc
 
 	private:
 		float m_angle = 0;
-		float m_time;
+		float m_time = 0;
 		float m_speed = 5;
 
 		glm::vec3 ambientLight{ 0.05f, 0.05f, 0.05f };
