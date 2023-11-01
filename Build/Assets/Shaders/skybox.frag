@@ -8,6 +8,7 @@
 #define SPECULAR_TEXTURE_MASK			(1 << 1)
 #define NORMAL_TEXTURE_MASK				(1 << 2)
 #define EMISSIVE_TEXTURE_MASK			(1 << 3)
+#define CUBE_MAP_TEXTURE_MASK			(1 << 4)
 
 in layout(location = 0) vec3 fposition;
 in layout(location = 1) vec2 ftexcoord;

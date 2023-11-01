@@ -11,7 +11,7 @@
 
 in layout(location = 0) vec3 fposition;
 in layout(location = 1) vec2 ftexcoord;
-in layout(location = 2) vec3 fnormal;
+in layout(location = 2) mat3 ftbn;
 
 out layout(location = 0) vec4 ocolor;
 
@@ -124,8 +124,12 @@ void main()
 		vec3 specular;
  
 		float attenuation = (lights[i].type == DIRECTIONAL) ? 1 : attenuation(lights[i].position, fposition, lights[i].range);
+
+		vec3 normal = texture(normalTexture, ftexcoord).rgb;
+		normal = (normal * 2) - 1;
+		normal = normalize(ftbn * normal);
  
-		phong(lights[i], fposition, fnormal, diffuse, specular);
+		phong(lights[i], fposition, normal, diffuse, specular);
 		ocolor += ((vec4(diffuse, 1) * albedoColor) + vec4(specular, 1)) * specularColor * lights[i].intensity * attenuation;
 	}
 }

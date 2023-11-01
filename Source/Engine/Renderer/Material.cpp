@@ -2,6 +2,7 @@
 #include "Program.h"
 #include "Texture.h"
 #include "Core/Core.h"
+#include "Cubemap.h"
 
 namespace nc
 {
@@ -23,36 +24,42 @@ namespace nc
 		m_program = GET_RESOURCE(Program, program);
 
 		// read the textures
-		std::string albedoTextureName;
-		READ_NAME_DATA(document, "albedoTexture", albedoTextureName);
-		if (!albedoTextureName.empty())
+		std::string albedoTextureName;		
+		if (READ_NAME_DATA(document, "albedoTexture", albedoTextureName))
 		{
-			params |= 0001;
+			params |= ALBEDO_TEXTURE_MASK;
 			albedoTexture = GET_RESOURCE(Texture, albedoTextureName);
 		}
 
-		std::string specularTextureName;
-		READ_NAME_DATA(document, "specularTexture", specularTextureName);
-		if (!specularTextureName.empty())
+		std::string specularTextureName;		
+		if (READ_NAME_DATA(document, "specularTexture", specularTextureName))
 		{
-			params |= 0010;
+			params |= SPECULAR_TEXTURE_MASK;
 			specularTexture = GET_RESOURCE(Texture, specularTextureName);
 		}
 		
-		std::string normalTextureName;
-		READ_NAME_DATA(document, "normalTexture", normalTextureName);
-		if (!normalTextureName.empty())
+		std::string normalTextureName;		
+		if (READ_NAME_DATA(document, "normalTexture", normalTextureName))
 		{
-			params |= 0100;
+			params |= NORMAL_TEXTURE_MASK;
 			normalTexture = GET_RESOURCE(Texture, normalTextureName);
 		}
 
 		std::string emissiveTextureName;
-		READ_NAME_DATA(document, "emissiveTexture", emissiveTextureName);
-		if (!emissiveTextureName.empty())
+		if (READ_NAME_DATA(document, "emissiveTexture", emissiveTextureName))
 		{
-			params |= 1000;
+			params |= EMISSIVE_TEXTURE_MASK;
 			emissiveTexture = GET_RESOURCE(Texture, emissiveTextureName);
+		}
+
+		std::string cubemapName;
+		if (READ_NAME_DATA(document, "cubemap", cubemapName))
+		{
+			params |= CUBE_MAP_TEXTURE_MASK;
+			std::vector<std::string> cubemaps;
+			READ_DATA(document, cubemaps);
+
+			cubemapTexture = GET_RESOURCE(Cubemap, cubemapName, cubemaps);
 		}
 
 		READ_DATA(document, albedo);
@@ -69,6 +76,7 @@ namespace nc
 	{
 		m_program->Use();
 
+		m_program->SetUniform("material.params", params);
 		m_program->SetUniform("material.albedo", albedo);
 		m_program->SetUniform("material.specular", specular);
 		m_program->SetUniform("material.emissive", emissive);

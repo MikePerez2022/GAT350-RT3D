@@ -2,35 +2,38 @@
 	"actors": [
 		{
 			"type": "Actor",
-			"name": "actor1",
+			"name": "skybox",
 			"persistent": true,
 			"transform": {
-				"position": [ -0.2, -0.2, 2.2 ],
-				"scale": [ 0.1, 0.1, 0.1 ],
+				"position": [ 0, 0, 2.3 ],
+				"scale": [ 1, 1, 1 ],
 				"rotation": [ 0, 0, 0 ]
 			},
 			"components": [
 				{
 					"type": "ModelComponent",
 					"modelName": "models/cube.obj",
-					"materialName": "materials/phong.mtrl"
+					"materialName": "materials/skybox.mtrl",
+					"enableDepth": false,
+					"cullface": "front"
 				}
 			]
 		},
 		{
 			"type": "Actor",
-			"name": "actor2",
+			"name": "actor1",
 			"persistent": true,
+			"active":  false,
 			"transform": {
-				"position": [ 0.2, -0.2, 2.2 ],
+				"position": [ 0, 0, 2.7 ],
 				"scale": [ 0.1, 0.1, 0.1 ],
 				"rotation": [ 0, 0, 0 ]
 			},
 			"components": [
 				{
 					"type": "ModelComponent",
-					"modelName": "models/squirrel.glb",
-					"materialName": "materials/phong.mtrl"
+					"modelName": "models/ogre.obj",
+					"materialName": "materials/ogre.mtrl"
 				}
 			]
 		}

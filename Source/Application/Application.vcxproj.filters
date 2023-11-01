@@ -14,6 +14,9 @@
     <Filter Include="Scenes">
       <UniqueIdentifier>{459d3171-ac8f-44c7-88ca-7acf19d424b4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders\cubemap">
+      <UniqueIdentifier>{c3795609-e6b4-400d-8dd9-c50826d3692b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -118,6 +121,39 @@
     </None>
     <None Include="..\..\Build\Assets\Materials\phong.mtrl">
       <Filter>Materials</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\lit_phong_normal.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\lit_phong_normal.prog">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\lit_phong_normal.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Materials\ogre.mtrl">
+      <Filter>Materials</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Materials\skybox.mtrl">
+      <Filter>Materials</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\skybox.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\skybox.prog">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\skybox.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\cubemap.frag">
+      <Filter>Shaders\cubemap</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\cubemap.prog">
+      <Filter>Shaders\cubemap</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\cubemap.vert">
+      <Filter>Shaders\cubemap</Filter>
     </None>
   </ItemGroup>
 </Project>
