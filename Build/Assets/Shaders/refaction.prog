@@ -1,4 +1,4 @@
 {
-	"vertexShader": "shaders/skybox.vert",
+	"vertexShader": "shaders/refraction.vert",
 	"fragmentShader": "shaders/cubemap.frag"
 }

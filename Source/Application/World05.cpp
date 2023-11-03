@@ -74,6 +74,22 @@ namespace nc
         material->ProcessGui();
         material->Bind();
 
+        //material = GET_RESOURCE(Material, "materials/refraction.mtrl");
+        if (material)
+        {
+            ImGui::Begin("Refraction");
+
+            //m_refraction = 1.0f + std::fabs();
+
+            ImGui::DragFloat("IOR", &m_refraction, 0.1f, 1.00f, 3);
+            auto program = material->GetProgram();
+            program->Use();
+            program->SetUniform("ior", m_refraction);
+
+
+            ImGui::End();
+        }
+
         //light        
         material->GetProgram()->SetUniform("ambientLight", ambientLight);        
 
