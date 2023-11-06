@@ -23,7 +23,7 @@
 			"type": "Actor",
 			"name": "actor1",
 			"persistent": true,
-			"active": false,
+			"active": true,
 			"transform": {
 				"position": [ 0, 0, 2.7 ],
 				"scale": [ 0.1, 0.1, 0.1 ],
@@ -41,7 +41,7 @@
 			"type": "Actor",
 			"name": "actor2",
 			"persistent": true,
-			"active": false,
+			"active": true,
 			"transform": {
 				"position": [ 0.15, 0, 2.7 ],
 				"scale": [ 0.1, 0.1, 0.1 ],
@@ -59,7 +59,7 @@
 			"type": "Actor",
 			"name": "actor3",
 			"persistent": true,
-			"active": false,
+			"active": true,
 			"transform": {
 				"position": [ -0.15, 0, 2.7 ],
 				"scale": [ 0.1, 0.1, 0.1 ],
