@@ -23,6 +23,7 @@ namespace nc
 		// get program resource
 		m_program = GET_RESOURCE(Program, program);
 
+
 		// read the textures
 		std::string albedoTextureName;		
 		if (READ_NAME_DATA(document, "albedoTexture", albedoTextureName))
