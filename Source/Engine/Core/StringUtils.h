@@ -16,7 +16,7 @@ namespace nc
 		void CreateUnique(std::string& string);
 
 	private:
-		std::string ChangeCase(std::string string, bool toUpper); //I didn't know if you could used the <cType.h> for the methods so I made it without them above
+		std::string ChangeCase(std::string string, bool toUpper);
 		
 	};
 }

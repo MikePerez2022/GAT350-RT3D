@@ -14,6 +14,9 @@ namespace nc
 
 	void RotateComponent::Update(float dt)
 	{
+		m_owner->transform.euler += euler * dt;
+		//m_owner->transform.euler = Normalize<
+
 		glm::quat rotation = EulerToQuaternion(euler);
 		m_owner->transform.rotation = m_owner->transform.rotation * rotation;
 	}
