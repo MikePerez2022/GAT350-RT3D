@@ -34,6 +34,10 @@
 					"type": "ModelComponent",
 					"modelName": "models/ogre.obj",
 					"materialName": "materials/ogre.mtrl"
+				},
+				{
+					"type": "RotateComponent",
+					"euler": [ 0, 0, 0 ]
 				}
 			]
 		},

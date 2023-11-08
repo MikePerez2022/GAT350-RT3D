@@ -1,6 +1,5 @@
 #pragma once
 #include "Component.h"
-#include "Renderer/Program.h"
 
 namespace nc
 {
