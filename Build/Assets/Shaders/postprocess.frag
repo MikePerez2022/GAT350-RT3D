@@ -38,7 +38,7 @@ vec4 colortint(vec4 color)
 
 vec4 grain(vec4 color)
 {
-    float noise = (rand(ftexcoord) * 2.0 - 1.0) * 0.5;// 0.5 = grain amount
+    float noise = (rand(ftexcoord) * 2.0 - 1.0) * 0.25;// 0.25 = grain amount
     return color + noise;
 }
 
@@ -60,21 +60,20 @@ vec4 edge(vec4 color)
 
     vec3 outline = color.rgb * edge[1][1]; //multiply it by the center value
 
-	//I used some outside resources and code to get the calulations for the nested for loop.
-	//I didn't know engough to do it without research, but I did mod the calulations so it's understadible.
-
 	//iterates over the rows
-    for (int i = -1; i <= 1; ++i) 
+    for (int i = 0; i <= 2; ++i) 
 	{
 		//iterates over the columns
-		for (int j = -1; j <= 1; ++j) 
+		for (int j = 0; j <= 2; ++j) 
 		{
-			if (i != 0 || j != 0) 
+			if (i != 1 || j != 1) 
 			{
 				vec2 texturesize = textureSize(screenTexture, 0);
-				vec2 edgeOffsets = vec2(float(i), float(j));
+				vec2 edgeOffsets = vec2(float(i-1), float(j-1));//subtracting 1 merges the edge colors
 				vec3 image = texture(screenTexture, ftexcoord + edgeOffsets / texturesize).rgb;
-				outline += image * edge[i+1][j+1];//you add 1 because of the for loops 
+				outline += image * edge[i][j];
+				//I used some outside resources for the code calulations.
+				//I modified the code so it's understadible and not a copy.
 			}
 		}
     }
