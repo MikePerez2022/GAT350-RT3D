@@ -1,0 +1,88 @@
+{
+	"actors": [
+		{
+			"type": "Actor",
+			"name": "camera",
+			"persistent": true,
+			"active": true,
+			"transform": {
+				"position": [ 0, 0, 3 ],
+				"rotation": [ 0, 180, 0 ]
+			},
+			"components": [
+				{
+					"type": "CameraComponent",
+					"fov": 70.0,
+					"aspect": 1.391,
+					"near": 0.01,
+					"far": 100.0
+				},
+				{
+					"type": "CameraController",
+					"speed": 5,
+					"sensitivity": 0.5
+				},
+				{
+					"type": "RotateComponent",
+					"euler": [ 0, 0, 0 ]
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "light1",
+			"persistent": true,
+			"active": true,
+			"transform": {
+				"position": [ 0, 5, 4 ],
+				"rotation": [ 0, 0, 0 ]
+			},
+			"components": [
+				{
+					"type": "LightComponent",
+					"color": [ 1, 1, 1 ],
+					"intensity": 1,
+					"range": 20,
+					"innerAngle": 20,
+					"outerAngle": 30
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Tower",
+			"persistent": true,
+			"active": true,
+			"transform": {
+				"position": [ 2, -1, -1 ],
+				"scale": [ 0.1, 0.1, 0.1 ],
+				"rotation": [ 0, 0, 0 ]
+			},
+			"components": [
+				{
+					"type": "ModelComponent",
+					"modelName": "Fantasy/Obj/SF_Bld_Castle_Hall_01.obj",
+					"materialName": "Fantasy/fantasy.mtrl"
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Floor",
+			"persistent": true,
+			"active": true,
+			"transform": {
+				"position": [ 0, -1, 0 ],
+				"scale": [ 1, 1, 1 ],
+				"rotation": [ 0, 0, 0 ]
+			},
+			"components": [
+				{
+					"type": "ModelComponent",
+					"modelName": "Fantasy/Fbx/SF_Env_Tile_Grass_01.fbx",
+					"materialName": "Fantasy/fantasy.mtrl"
+				}
+			]
+		}
+	]
+}
