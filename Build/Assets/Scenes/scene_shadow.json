@@ -34,17 +34,19 @@
 			"persistent": true,
 			"active": true,
 			"transform": {
-				"position": [ 0, 5, 4 ],
-				"rotation": [ 0, 0, 0 ]
+				"position": [ 0, 5, 0 ],
+				"rotation": [ 90, 0, 0 ]
 			},
 			"components": [
 				{
 					"type": "LightComponent",
+					"lightType": "directional",
 					"color": [ 1, 1, 1 ],
 					"intensity": 1,
 					"range": 20,
 					"innerAngle": 20,
-					"outerAngle": 30
+					"outerAngle": 30,
+					"castShadow": true
 				}
 			]
 		},
@@ -81,6 +83,24 @@
 					"type": "ModelComponent",
 					"modelName": "Fantasy/Fbx/SF_Env_Tile_Grass_01.fbx",
 					"materialName": "Fantasy/fantasy.mtrl"
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "depth_debug",
+			"persistent": true,
+			"active": true,
+			"transform": {
+				"position": [ 2.4, 1.4, 0 ],
+				"scale": [ 1, 1, 1 ],
+				"rotation": [ 0, 0, 0 ]
+			},
+			"components": [
+				{
+					"type": "ModelComponent",
+					"modelName": "models/quad.obj",
+					"materialName": "materials/sprite.mtrl"
 				}
 			]
 		}

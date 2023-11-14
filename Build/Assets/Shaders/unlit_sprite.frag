@@ -20,6 +20,7 @@ uniform float time;
 void main()
 {
 	vec4 texcolor = texture(tex, ftexcoord);
+	float depth = texcolor.r;
 
 	if(texcolor.a < 0.5) discard;
 	ocolor = texcolor * vec4(material.albedo, 1);
