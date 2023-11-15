@@ -236,5 +236,8 @@
     <None Include="..\..\Build\Assets\Shaders\shadow_depth.frag">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="..\..\Build\Assets\Materials\uilight.mtrl">
+      <Filter>Materials</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -27,6 +27,12 @@ namespace nc
         {
             material->albedoTexture = texture;
         }
+
+        auto materials = GET_RESOURCES(Material);
+        for (auto material : materials)
+        {
+            material->depthTexture = texture;
+        }
         
 
         return true;
@@ -55,7 +61,7 @@ namespace nc
         renderer.SetViewport(framebuffer->GetSize().x, framebuffer->GetSize().y);
         framebuffer->Bind();
 
-        renderer.ClearDepth();//---------------
+        renderer.ClearDepth();
         auto program = GET_RESOURCE(Program, "shaders/shadow_depth.prog");
         program->Use();
 
@@ -72,6 +78,9 @@ namespace nc
         auto models = m_scene->GetComponents<ModelComponent>();
         for (auto model : models)
         {
+            if (!model->castShadow) continue;
+
+            //glCullFace(GL_FRONT);
             program->SetUniform("model", model->m_owner->transform.GetMatrix());
             model->model->Draw();
         }
