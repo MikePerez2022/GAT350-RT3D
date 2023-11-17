@@ -6,7 +6,7 @@
 			"persistent": true,
 			"active": true,
 			"transform": {
-				"position": [ 0, 0, 3 ],
+				"position": [ 2, 0, 1 ],
 				"rotation": [ 0, 180, 0 ]
 			},
 			"components": [
@@ -62,7 +62,7 @@
 			"persistent": true,
 			"active": true,
 			"transform": {
-				"position": [ 2, -1, -5 ],
+				"position": [ 5, -1, -5 ],
 				"scale": [ 0.1, 0.1, 0.1 ],
 				"rotation": [ 0, 0, 0 ]
 			},
@@ -107,6 +107,24 @@
 					"type": "ModelComponent",
 					"modelName": "models/quad.obj",
 					"materialName": "materials/sprite.mtrl"
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "ogre",
+			"persistent": true,
+			"active": true,
+			"transform": {
+				"position": [ 2, -0.3, -1.6 ],
+				"scale": [ 1, 1, 1 ],
+				"rotation": [ 0, 0, 0 ]
+			},
+			"components": [
+				{
+					"type": "ModelComponent",
+					"modelName": "models/ogre.obj",
+					"materialName": "materials/ogre.mtrl"
 				}
 			]
 		}

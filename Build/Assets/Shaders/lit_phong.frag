@@ -92,11 +92,16 @@ void phong(in Light light, in vec3 position, in vec3 normal, out vec3 diffuse, o
 	specular = vec3(0);
 	if(intensity > 0)
 	{
-		vec3 reflection = reflect(-lightDir, normal);
 		vec3 viewDir = normalize(-position);
-		intensity = max(dot(reflection, viewDir), 0);
+		//phong
+		//vec3 reflection = reflect(-lightDir, normal);
+		//intensity = max(dot(reflection, viewDir), 0);
+		//blinn phong
+		vec3 h = normalize(viewDir + lightDir);
+		intensity = max(dot(h, normal), 0);
+
 		intensity = pow(intensity, material.shininess);
-		specular = vec3(intensity * spotIntensity);
+		specular = vec3(intensity * spotIntensity);	
 	}
 };
 
@@ -112,7 +117,7 @@ float attenuation(in vec3 position1, in vec3 position2, in float range)
 
 float calculateShadow(vec4 shadowcoord, float bias)
 {
-	return texture(shadowTexture, shadowcoord.xy).x < (shadowcoord.z - shadowBias) ? 0 : 1;
+	return texture(shadowTexture, shadowcoord.xy).x < (shadowcoord.z - bias) ? 0 : 1;
 }
 
 

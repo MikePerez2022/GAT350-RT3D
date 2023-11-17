@@ -11,7 +11,8 @@
 
 in layout(location = 0) vec3 fposition;
 in layout(location = 1) vec2 ftexcoord;
-in layout(location = 2) mat3 ftbn;
+in layout(location = 2) vec4 fshadowcoord;//Included reciving shadow coords from vertex
+in layout(location = 3) mat3 ftbn;
 
 out layout(location = 0) vec4 ocolor;
 
@@ -19,6 +20,7 @@ layout(binding = 0) uniform sampler2D albedoTexture;
 layout(binding = 1) uniform sampler2D specularTexture;
 layout(binding = 2) uniform sampler2D normalTexture;
 layout(binding = 3) uniform sampler2D emissiveTexture;
+layout(binding = 5) uniform sampler2D shadowTexture; //Included the shadow texture
 
 uniform float time;
 
@@ -52,6 +54,9 @@ uniform vec3 ambientLight;
 
 //This can be manipulated to add or remove lights
 uniform int numLights = 3;
+
+//Added uinform shadowBias
+uniform float shadowBias = 0.005;
 
 void phong(in Light light, in vec3 position, in vec3 normal, out vec3 diffuse, out vec3 specular)
 {
@@ -111,6 +116,12 @@ float attenuation(in vec3 position1, in vec3 position2, in float range)
 	return attenuation;
 }
 
+////Included the calculate shadow method that returns 1 or 0
+float calculateShadow(vec4 shadowcoord, float bias)
+{
+	//use turniary op to return whether a point in the scene is in shadow or not ?
+	return (texture(shadowTexture, shadowcoord.xy).x < (shadowcoord.z - bias)) ? 0 : 1;
+}
 
 void main()
 {
@@ -121,6 +132,9 @@ void main()
 
 	// set ambient light + emissive color
 	ocolor = vec4(ambientLight, 1) * albedoColor + emissiveColor;
+
+	//The result of the shadow calculation method
+	float shadow = calculateShadow(fshadowcoord, shadowBias);
  
 	// set lights
 	for (int i = 0; i < numLights; i++)
@@ -130,11 +144,11 @@ void main()
  
 		float attenuation = (lights[i].type == DIRECTIONAL) ? 1 : attenuation(lights[i].position, fposition, lights[i].range);
 
-		vec3 normal = texture(normalTexture, ftexcoord).rgb;
+		vec3 normal = texture(normalTexture, ftexcoord).rgb;//
 		normal = (normal * 2) - 1;
-		normal = normalize(ftbn * normal);
+		normal = normalize(ftbn * normal);//
  
 		phong(lights[i], fposition, normal, diffuse, specular);
-		ocolor += ((vec4(diffuse, 1) * albedoColor) + vec4(specular, 1)) * specularColor * lights[i].intensity * attenuation;
+		ocolor += ((vec4(diffuse, 1) * albedoColor) + vec4(specular, 1)) * specularColor * lights[i].intensity * attenuation * shadow;//
 	}
 }
