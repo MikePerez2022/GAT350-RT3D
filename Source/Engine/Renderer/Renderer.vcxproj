@@ -193,6 +193,7 @@ xcopy "$(ThirdPartyDir)assimp\lib\$(Configuration)\*.dll" "$(SolutionDir)Build" 
   <ItemGroup>
     <ClCompile Include="..\..\ThirdParty\glad\src\glad.c" />
     <ClCompile Include="..\..\ThirdParty\imgui\Gui.cpp" />
+    <ClCompile Include="..\..\ThirdParty\imgui\ImFileDialog.cpp" />
     <ClCompile Include="..\..\ThirdParty\imgui\imgui.cpp" />
     <ClCompile Include="..\..\ThirdParty\imgui\imgui_draw.cpp" />
     <ClCompile Include="..\..\ThirdParty\imgui\imgui_impl_opengl3.cpp" />
@@ -201,6 +202,7 @@ xcopy "$(ThirdPartyDir)assimp\lib\$(Configuration)\*.dll" "$(SolutionDir)Build" 
     <ClCompile Include="..\..\ThirdParty\imgui\imgui_tables.cpp" />
     <ClCompile Include="..\..\ThirdParty\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Cubemap.cpp" />
+    <ClCompile Include="Editor.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Framebuffer.cpp" />
     <ClCompile Include="Material.cpp" />
@@ -214,7 +216,9 @@ xcopy "$(ThirdPartyDir)assimp\lib\$(Configuration)\*.dll" "$(SolutionDir)Build" 
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\ThirdParty\imgui\Gui.h" />
+    <ClInclude Include="..\..\ThirdParty\imgui\ImFileDialog.h" />
     <ClInclude Include="Cubemap.h" />
+    <ClInclude Include="Editor.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="Framebuffer.h" />
     <ClInclude Include="Material.h" />

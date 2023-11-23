@@ -14,11 +14,12 @@ namespace nc
 
 	void Scene::Update(float dt)
 	{
+		m_dt = dt;
 		// update and remove destroyed actors
 		auto iter = m_actors.begin();
 		while (iter != m_actors.end())
 		{
-			if ((*iter)->active) (*iter)->Update(dt);
+			if ((*iter)->active) (*iter)->Update(dt);//rmv?
 			((*iter)->destroyed) ? iter = m_actors.erase(iter) : iter++;
 		}
 	}
@@ -86,6 +87,20 @@ namespace nc
 		}
 	}
 
+	void Scene::Remove(Actor* actor)
+	{
+		auto iter = m_actors.begin();
+		while (iter != m_actors.end())
+		{
+			if ((*iter).get() == actor)
+			{
+				m_actors.erase(iter);
+				break;
+			}
+			iter++;
+		}
+	}
+
 	bool Scene::Load(const std::string& filename)
 	{
 		rapidjson::Document document;
@@ -128,31 +143,16 @@ namespace nc
 
 	void Scene::ProcessGui()
 	{
-		ImGui::Begin("Scene");
+		float fps = 1 / m_dt;
+		float ms = 1000 * m_dt;
+		
+		ImVec4 color = (fps < 30) ? ImVec4(1, 0, 0, 1) : ImVec4(1, 1, 1, 1);
+		ImGui::TextColored(color, "%.2f FPS (%.2f)", fps, ms);
 		ImGui::ColorEdit3("Ambient", glm::value_ptr(ambientLight));
-		ImGui::Separator();
+		
 
-		for (auto& actor : m_actors)
-		{
-			if (ImGui::Selectable(actor->name.c_str(), actor->guiSelect))
-			{
-				//set all actors gui to false
-				std::for_each(m_actors.begin(), m_actors.end(), [](auto& a) { a->guiSelect = false; });
-				//set current actor gui to true
-				actor->guiSelect = true;
-			}
-		}
-		ImGui::End();
-
-
-
-		ImGui::Begin("Inspector");
-		auto iter = std::find_if(m_actors.begin(), m_actors.end(), [](auto& a) { return a->guiSelect; });
-		if (iter != m_actors.end())
-		{
-			(*iter)->ProcessGui();
-		}
-		ImGui::End();
+		
+		
 	}
 
 }

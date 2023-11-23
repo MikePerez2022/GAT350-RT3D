@@ -83,11 +83,10 @@ namespace nc
 	void StringUtils::CreateUnique(std::string& string)
 	{
 		//make the unigned int in the method  --  static makes the increments to the int last
-		static unsigned int unique = 0;
-		unique++;
+		static unsigned int unique = 1;
 
 		//Appends unique unsigned int and changes the string because it's a refrence
-		string += std::to_string(unique);
+		string += std::to_string(unique++);
 	}
 
 	std::string StringUtils::ChangeCase(std::string string, bool toUpper)

@@ -12,8 +12,12 @@ namespace nc
     {
         //Load scene
         m_scene = std::make_unique<Scene>();
+        m_scene->Load("Scenes/scene_editor.json");//load scene editor
         m_scene->Load("Scenes/scene_shadow_cel.json");
         m_scene->Initialize();
+
+        m_editor = std::make_unique<Editor>();
+
 
         res_t<Texture> texture = std::make_unique<Texture>();
         texture->CreateDepthTexture(1024, 1024);
@@ -50,7 +54,10 @@ namespace nc
         ENGINE.GetSystem<Gui>()->BeginFrame();
 
         m_scene->Update(dt);
-        m_scene->ProcessGui();
+
+        m_editor->Update();
+        
+        m_editor->ProcessGui(m_scene.get());
 
         //ImGui to modify the cel variables in world class
         ImGui::Begin("Cel");

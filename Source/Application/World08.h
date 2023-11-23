@@ -37,6 +37,6 @@ namespace nc
 		//cel modifiers
 		int m_celLevels = 4;
 		float m_celSpecularCutoff = 0.3;
-		float m_celOutline = 0.3;
+		float m_celOutline = 0.0;
 	};
 }

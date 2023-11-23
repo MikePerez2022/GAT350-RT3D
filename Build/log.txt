@@ -6,6 +6,10 @@ INFO: Factory.h(76) Class registered: CameraController
 INFO: Factory.h(76) Class registered: CameraComponent
 INFO: Factory.h(76) Class registered: Actor
 INFO: Main.cpp(10) Initialize Engine...
+INFO: Factory.h(84) Prototype Class registered: Camera
+INFO: Factory.h(84) Prototype Class registered: Light
+INFO: Factory.h(84) Prototype Class registered: Sphere
+INFO: Factory.h(84) Prototype Class registered: Cube
 WARNING: Program.cpp(165) Could not find uniform location: view
 WARNING: Program.cpp(165) Could not find uniform location: projection
 WARNING: Program.cpp(165) Could not find uniform location: lights[0].type
@@ -35,3 +39,35 @@ WARNING: Program.cpp(165) Could not find uniform location: material.params
 WARNING: Program.cpp(165) Could not find uniform location: material.specular
 WARNING: Program.cpp(165) Could not find uniform location: material.emissive
 WARNING: Program.cpp(165) Could not find uniform location: material.shininess
+WARNING: Program.cpp(165) Could not find uniform location: lights[1].type
+WARNING: Program.cpp(165) Could not find uniform location: lights[1].position
+WARNING: Program.cpp(165) Could not find uniform location: lights[1].direction
+WARNING: Program.cpp(165) Could not find uniform location: lights[1].color
+WARNING: Program.cpp(165) Could not find uniform location: lights[1].intensity
+WARNING: Program.cpp(165) Could not find uniform location: lights[1].range
+WARNING: Program.cpp(165) Could not find uniform location: lights[1].innerAngle
+WARNING: Program.cpp(165) Could not find uniform location: lights[1].outerAngle
+WARNING: Program.cpp(165) Could not find uniform location: lights[1].type
+WARNING: Program.cpp(165) Could not find uniform location: lights[1].position
+WARNING: Program.cpp(165) Could not find uniform location: lights[1].direction
+WARNING: Program.cpp(165) Could not find uniform location: lights[1].color
+WARNING: Program.cpp(165) Could not find uniform location: lights[1].intensity
+WARNING: Program.cpp(165) Could not find uniform location: lights[1].range
+WARNING: Program.cpp(165) Could not find uniform location: lights[1].innerAngle
+WARNING: Program.cpp(165) Could not find uniform location: lights[1].outerAngle
+WARNING: Program.cpp(165) Could not find uniform location: lights[2].type
+WARNING: Program.cpp(165) Could not find uniform location: lights[2].position
+WARNING: Program.cpp(165) Could not find uniform location: lights[2].direction
+WARNING: Program.cpp(165) Could not find uniform location: lights[2].color
+WARNING: Program.cpp(165) Could not find uniform location: lights[2].intensity
+WARNING: Program.cpp(165) Could not find uniform location: lights[2].range
+WARNING: Program.cpp(165) Could not find uniform location: lights[2].innerAngle
+WARNING: Program.cpp(165) Could not find uniform location: lights[2].outerAngle
+WARNING: Program.cpp(165) Could not find uniform location: lights[2].type
+WARNING: Program.cpp(165) Could not find uniform location: lights[2].position
+WARNING: Program.cpp(165) Could not find uniform location: lights[2].direction
+WARNING: Program.cpp(165) Could not find uniform location: lights[2].color
+WARNING: Program.cpp(165) Could not find uniform location: lights[2].intensity
+WARNING: Program.cpp(165) Could not find uniform location: lights[2].range
+WARNING: Program.cpp(165) Could not find uniform location: lights[2].innerAngle
+WARNING: Program.cpp(165) Could not find uniform location: lights[2].outerAngle
