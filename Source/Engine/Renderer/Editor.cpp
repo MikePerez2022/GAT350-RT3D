@@ -2,6 +2,8 @@
 #include "Framework/Scene.h"
 #include "Framework/Components/CameraComponent.h"
 
+#include "Framework/Resource/ResourceManager.h"
+
 namespace nc
 {
 	void Editor::Update()
@@ -14,7 +16,48 @@ namespace nc
 		if (!m_active) return;
 
 		ImGui::Begin("Resources");
-		auto resources = GET_RESOURCES(Resource);
+
+		const char* types[] = { "Texture", "Model", "Material", "Shader" };
+		ImGui::Combo("Resource Filter", (int*)(&resourceType), types, 4);
+
+		//get the 4 types seperately
+		auto res = GET_RESOURCES(Texture);		
+		auto res1 = GET_RESOURCES(Model);
+		auto res2 = GET_RESOURCES(Material);
+		auto res3 = GET_RESOURCES(Shader);
+
+		//container for the chosen resources -- to be processed
+		std::vector<res_t<Resource>> resources;
+
+		//filter
+		switch (resourceType)
+		{
+		case nc::Editor::TEXTURE:
+			for (auto r : res)
+			{
+				resources.push_back(r);
+			}
+			break;
+		case nc::Editor::MODEL:
+			for (auto r : res1)
+			{
+				resources.push_back(r);
+			}
+			break;
+		case nc::Editor::MATERIAL:
+			for (auto r : res2)
+			{
+				resources.push_back(r);
+			}
+			break;
+		case nc::Editor::SHADER:
+			for (auto r : res3)
+			{
+				resources.push_back(r);
+			}
+			break;
+		}
+
 		for (auto& resource : resources)
 		{
 			if (ImGui::Selectable(resource->name.c_str(), resource.get() == m_selected))
